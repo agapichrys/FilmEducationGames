@@ -5,6 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Factory of the Moving Pictures</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5em;
+    }
+
+    .game {
+      position: relative;
+      width: 250px;
+      text-align: center;
+    }
+
+    .game img {
+      width: 100%;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .game img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 200, 100, 0.3);
+    }
+
+    .iframe-container {
+      display: none;
+      margin-top: 1em;
+      position: relative;
+    }
+
+    .iframe-container iframe {
+      width: 960px;
+      height: 600px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+    }
+  </style>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Oswald&display=swap" rel="stylesheet">
 </head>
 
@@ -17,7 +73,7 @@
   <main>
     <!-- HISTORY -->
     <section class="category history">
-      <h2>🎞️ History</h2>
+      <h2>🎞️ Ιστορία</h2>
       <div class="gallery">
         <a href="history/Museum/">
           <img src="images/history1.png" alt="Το Μουσείο">
@@ -32,9 +88,17 @@
 
     <!-- TECHNICAL -->
     <section class="category technical">
-      <h2>⚙️ Technical</h2>
+      <h2>⚙️ Τεχνική</h2>
       <div class="gallery">
-        <a href="technical/CreateMagic/"><img src="images/technical1.png"><span>Δημιουργώ Μαγικά</span></a>
+        <div class="game">
+  <img src="images/technical1.png" alt="Δημιουργώ Μαγικά" onclick="toggleGame(this, 'technical/CreateMagic/index.html')">
+  <span>Δημιουργώ Μαγικά</span>
+  <div class="iframe-container">
+    <button class="close-btn" onclick="closeGame(this)">✖</button>
+    <iframe src=""></iframe>
+  </div>
+</div>
+
         <a href="technical/PlayingWithLight/"><img src="images/technical2.png"><span>Γράφω με φως</span></a>
         <a href="technical/MovieSet/"><img src="images/technical3.png"><span>Στούντιο</span></a>
         <a href="technical/VideoMontage/"><img src="images/technical4.png"><span>Βάζω τα πλάνα στη σειρά</span></a>
@@ -44,7 +108,7 @@
 
     <!-- PRODUCTION -->
     <section class="category production">
-      <h2>🎬 Production</h2>
+      <h2>🎬 Παραγωγή</h2>
       <div class="gallery">
         <a href="production/OrganizeMovie/"><img src="images/production1.png"><span>Οργανώνω τη δημιουργία μιας ταινίας</span></a>
         <a href="production/FindProfessions/"><img src="images/production2.png"><span>Βρίσκω τι κάνει</span></a>
@@ -54,7 +118,7 @@
 
     <!-- DISTRIBUTION -->
     <section class="category distribution">
-      <h2>🚚 Distribution</h2>
+      <h2>🚚 Διανομή</h2>
       <div class="gallery">
         <a href="distribution/CreatePoster/"><img src="images/distribution1.png"><span>Φτιάχνω την αφίσα μιας ταινίας</span></a>
       </div>
@@ -64,5 +128,37 @@
   <footer>
     <p>© 2025 The Factory of the Moving Pictures · An Interactive Film Education Project</p>
   </footer>
+<script>
+  function toggleGame(img, gameUrl) {
+    const container = img.parentElement.querySelector('.iframe-container');
+    const iframe = container.querySelector('iframe');
+
+    // If it's already open, close it
+    if (container.style.display === 'block') {
+      container.style.display = 'none';
+      iframe.src = '';
+      return;
+    }
+
+    // Close any other open games
+    document.querySelectorAll('.iframe-container').forEach(div => {
+      div.style.display = 'none';
+      div.querySelector('iframe').src = '';
+    });
+
+    // Open this one
+    iframe.src = gameUrl;
+    container.style.display = 'block';
+    window.scrollTo({ top: img.offsetTop - 100, behavior: 'smooth' });
+  }
+
+  function closeGame(btn) {
+    const container = btn.parentElement;
+    const iframe = container.querySelector('iframe');
+    container.style.display = 'none';
+    iframe.src = '';
+  }
+</script>
+
 </body>
 </html>
