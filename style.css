@@ -1,5 +1,5 @@
 body {
-  background: #F0E8D9 url('images/bg_factory.jpg') center/cover fixed;
+  background: #F0E8D9 url('images/bg_factory.jpg') top center repeat-y;
   color: #242424;
   font-family: 'Syne', sans-serif;
   margin: 0;
