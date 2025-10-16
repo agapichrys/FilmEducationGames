@@ -14,7 +14,7 @@ header {
 
 h1 {
   font-family: 'Open Sans', serif;
-  font-size: 2.8em;
+  font-size: 3em;
   color: #17211B;
   display: flex;
   align-items: center;
@@ -48,7 +48,8 @@ h1 .logo {
 .category h2 {
   font-family: 'Cinzel', serif;
   font-size: 2em;
-  margin-bottom: 1em;
+  margin-top: -2em;
+  margin-bottom: 2em;
   color: #17211B;
 }
 
@@ -62,7 +63,7 @@ h1 .logo {
 
 .game {
   position: relative;
-  width: 250px;
+  width: 300px;
   text-align: center;
 }
 
