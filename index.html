@@ -32,34 +32,36 @@
     }
 
     .iframe-container {
-      display: none;
-      margin-top: 1em;
-      position: relative;
-    }
+  display: block;
+  margin: 2em auto;
+  position: relative;
+  width: fit-content;
+}
 
-    .iframe-container iframe {
-      width: 960px;
-      height: 600px;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-    }
+.iframe-container iframe {
+  width: 960px;
+  height: 600px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
 
-    .close-btn {
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      background: #000;
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1rem;
-      width: 30px;
-      height: 30px;
-      line-height: 30px;
-      text-align: center;
-    }
+.close-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Oswald&display=swap" rel="stylesheet">
 </head>
@@ -91,19 +93,17 @@
       <h2>⚙️ Τεχνική</h2>
       <div class="gallery">
         <div class="game">
-  <img src="images/technical1.png" alt="Δημιουργώ Μαγικά" onclick="toggleGame(this, 'technical/CreateMagic/index.html')">
-  <span>Δημιουργώ Μαγικά</span>
-  <div class="iframe-container">
-    <button class="close-btn" onclick="closeGame(this)">✖</button>
-    <iframe src=""></iframe>
+    <img src="images/technical1.png" alt="Δημιουργώ Μαγικά" onclick="openGame('technical/CreateMagic/index.html', this)">
+    <span>Δημιουργώ Μαγικά</span>
   </div>
-</div>
-
-        <a href="technical/PlayingWithLight/"><img src="images/technical2.png"><span>Γράφω με φως</span></a>
+  <div class="game">
+    <a href="technical/PlayingWithLight/"><img src="images/technical2.png"><span>Γράφω με φως</span></a>
+  </div>
         <a href="technical/MovieSet/"><img src="images/technical3.png"><span>Στούντιο</span></a>
         <a href="technical/VideoMontage/"><img src="images/technical4.png"><span>Βάζω τα πλάνα στη σειρά</span></a>
         <a href="technical/SoundDesign/"><img src="images/technical5.png"><span>Διαλέγω τους ήχους</span></a>
       </div>
+      <div class="iframe-zone"></div>
     </section>
 
     <!-- PRODUCTION -->
@@ -128,37 +128,39 @@
   <footer>
     <p>© 2025 The Factory of the Moving Pictures · An Interactive Film Education Project</p>
   </footer>
-<script>
-  function toggleGame(img, gameUrl) {
-    const container = img.parentElement.querySelector('.iframe-container');
-    const iframe = container.querySelector('iframe');
 
-    // If it's already open, close it
-    if (container.style.display === 'block') {
-      container.style.display = 'none';
-      iframe.src = '';
-      return;
-    }
+  <script>
+  function openGame(gameUrl, clickedImg) {
+    // Close any previously open iframes
+    document.querySelectorAll('.iframe-zone').forEach(zone => zone.innerHTML = '');
 
-    // Close any other open games
-    document.querySelectorAll('.iframe-container').forEach(div => {
-      div.style.display = 'none';
-      div.querySelector('iframe').src = '';
-    });
+    // Find the parent section of the clicked image
+    const section = clickedImg.closest('section');
+    const iframeZone = section.querySelector('.iframe-zone');
 
-    // Open this one
-    iframe.src = gameUrl;
-    container.style.display = 'block';
-    window.scrollTo({ top: img.offsetTop - 100, behavior: 'smooth' });
+    // Create the iframe and close button
+    const container = document.createElement('div');
+    container.className = 'iframe-container';
+    container.innerHTML = `
+      <button class="close-btn" onclick="closeGame(this)">✖</button>
+      <iframe src="${gameUrl}" loading="lazy"></iframe>
+    `;
+
+    iframeZone.appendChild(container);
+    iframeZone.style.display = 'block';
+
+    // Smooth scroll to bring it into view
+    container.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   function closeGame(btn) {
     const container = btn.parentElement;
-    const iframe = container.querySelector('iframe');
-    container.style.display = 'none';
-    iframe.src = '';
+    const iframeZone = container.parentElement;
+    iframeZone.innerHTML = '';
+    iframeZone.style.display = 'none';
   }
 </script>
+
 
 </body>
 </html>
