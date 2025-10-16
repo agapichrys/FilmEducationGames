@@ -1,6 +1,6 @@
 body {
-  background: #0e0e0e url('images/bg_factory.jpg') center/cover fixed;
-  color: #f5f5f5;
+  background: #E3E3E3 url('images/bg_factory.jpg') center/cover fixed;
+  color: #242424;
   font-family: 'Oswald', sans-serif;
   margin: 0;
   padding: 0;
@@ -9,30 +9,36 @@ body {
 header {
   text-align: center;
   padding: 3em 1em;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(230, 230, 230, 0.6);
 }
 
 h1 {
   font-family: 'Cinzel', serif;
   font-size: 2.8em;
-  margin: 0;
-  color: #f9d88f;
-  letter-spacing: 1px;
+  color: #400B0B;
+  display: flex;
+  align-items: center;
+  gap: 0.5em; /* space between logo and text */
+}
+
+h1 .logo {
+  height: 50px; /* adjust as needed */
+  width: auto;
 }
 
 .subtitle {
   margin-top: 0.5em;
   font-size: 1.1em;
-  color: #ddd;
+  color: #030303;
 }
 
 .category {
   padding: 3em 2em;
   text-align: center;
-  background: rgba(20, 20, 20, 0.8);
+  background: rgba(200, 200, 200, 0.8);
   margin: 2em auto;
-  border-top: 2px solid #f9d88f20;
-  border-bottom: 2px solid #f9d88f20;
+  border-top: 2px solid #400B0B20;
+  border-bottom: 2px solid #400B0B20;
   max-width: 1200px;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(255, 200, 100, 0.1);
@@ -42,7 +48,7 @@ h1 {
   font-family: 'Cinzel', serif;
   font-size: 2em;
   margin-bottom: 1em;
-  color: #f9d88f;
+  color: #400B0B;
 }
 
 .gallery {
