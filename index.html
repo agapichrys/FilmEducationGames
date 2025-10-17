@@ -21,8 +21,54 @@
 	<div class="floating-elements"></div>
 
   <main>
+  
+  <section class="overview">
+  <h4>Το Εργοστάσιο είναι χωρισμένο σε 4 Ενότητες</h4>
+  <p>Κάθε ενότητα αποκαλύπτει μια διαφορετική πλευρά της κινηματογραφικής τέχνης.</p>
+
+  <div class="section-row">
+
+    <div class="section-card">
+      <img src="images/icon_history.png" alt="Ιστορία" onclick="scrollToSection('history')">
+      <h3>Ιστορία</h3>
+      <button onclick="toggleInfo('info-history')">Περισσότερα</button>
+      <div id="info-history" class="info-text">
+        Ανακαλύψτε τις πρώτες κινούμενες εικόνες και το ταξίδι που οδήγησε στην εφεύρεση της κινηματογραφικής μηχανής.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <img src="images/icon_technical.png" alt="Τεχνική" onclick="scrollToSection('technical')">
+      <h3>Τεχνική</h3>
+      <button onclick="toggleInfo('info-technical')">Περισσότερα</button>
+      <div id="info-technical" class="info-text">
+        Ανακάλυψτε πώς ο φωτισμός, οι κάμερες και ο ήχος ζωντανεύουν την εικόνα.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <img src="images/icon_production.png" alt="Παραγωγή" onclick="scrollToSection('production')">
+      <h3>Παραγωγή</h3>
+      <button onclick="toggleInfo('info-production')">Περισσότερα</button>
+      <div id="info-production" class="info-text">
+        Από το σενάριο και τη σκηνοθεσία μέχρι τα σκηνικά και τα κοστούμια.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <img src="images/icon_distribution.png" alt="Διανομή" onclick="scrollToSection('distribution')">
+      <h3>Διανομή</h3>
+      <button onclick="toggleInfo('info-distribution')">Περισσότερα</button>
+      <div id="info-distribution" class="info-text">
+        Μάθετε πώς οι ταινίες φτάνουν τελικά στους θεατές και στη μεγάλη (ή μικρή) οθόνη.
+      </div>
+    </div>
+
+  </div>
+</section>
+
     <!-- HISTORY -->
-    <section class="category history">
+    <section id="history" class="category history">
       <h2>Ιστορία</h2>
       <div class="gallery">
         <div class="game">
@@ -38,7 +84,7 @@
     </section>
 
     <!-- TECHNICAL -->
-    <section class="category technical">
+    <section id="technical" class="category technical">
       <h2>Τεχνική</h2>
       <div class="gallery">
         <div class="game">
@@ -66,7 +112,7 @@
     </section>
 
     <!-- PRODUCTION -->
-    <section class="category production">
+    <section id="production" class="category production">
       <h2>Παραγωγή</h2>
       <div class="gallery">
         <div class="game">
@@ -86,7 +132,7 @@
     </section>
 
     <!-- DISTRIBUTION -->
-    <section class="category distribution">
+    <section id="distribution" class="category distribution">
       <h2>Διανομή</h2>
       <div class="gallery">
         <div class="game">
@@ -132,10 +178,18 @@
     iframeZone.innerHTML = '';
     iframeZone.style.display = 'none';
   }
-</script>
+  
+  function toggleInfo(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('show');
+}
 
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
 
-<script>
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.querySelector(".floating-elements");
   const images = [

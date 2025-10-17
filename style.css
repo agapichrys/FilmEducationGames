@@ -28,6 +28,31 @@ h1 {
   gap: 0.5em; /* space between logo and text */
 }
 
+h2 {
+  font-family: 'Geologica', sans-serif;
+  font-size: 2em;
+  color: #23393a;
+  display: flex;
+  justify-content: left;
+}
+
+h4 {
+  font-family: 'Geologica', sans-serif;
+  font-size: 2em;
+  color: #23393a;
+  display: flex;
+  justify-content: center;
+    margin-top: -1em;
+
+}
+
+
+p {
+  font-size: 1.3em;
+      margin-top: -1em;
+
+}
+
 h1 .logo {
   height: 100px; /* adjust as needed */
   width: auto;
@@ -46,7 +71,7 @@ h1 .logo {
   margin: 2em auto;
   /*border-top: 2px solid #23393a;
   border-bottom: 2px solid #23393a;*/
-  max-width: 70%;
+  max-width: 80%;
   border-radius: 0px;
   /*box-shadow: 0 0 20px rgba(150, 150, 140, 0.3);*/
 }
@@ -68,9 +93,16 @@ h1 .logo {
 
 
 .game {
+	background: #212126 url('images/filmframe.png'); /* warm cream / sepia */
+	background-repeat: no-repeat;
+  background-position: top center; /* always stick to top */
+  background-size: 100% auto;      /* full width, maintain aspect ratio */
+  overflow: hidden;                /* hides the cropped part */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   padding: 1em;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  width: 300px;
+  width: 25%;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -81,7 +113,7 @@ h1 .logo {
 }
 
 .game img {
-  width: 100%;
+  width: 80% !important;
   border-radius: 12px;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -89,39 +121,13 @@ h1 .logo {
 
 .game span {
   display: block;
-  margin-top: 0.5em;
+  margin-top: 0.7em;
   font-weight: bold;
   color: #ffffff;
   font-size: 1.2em;
 }
 
-/* History games */
-.history .game {
-  background-color: #ab5852; /* warm cream / sepia */
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
 
-/* Technical games */
-.technical .game {
-  background-color: #d49c47; /* soft blue */
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-/* Production games */
-.production .game {
-  background-color: #838469; /* soft purple */
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-/* Distribution games */
-.distribution .game {
-  background-color: #4a6369; /* mint / light green */
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
 
 .iframe-container {
   display: block;
@@ -200,6 +206,83 @@ footer {
   opacity: 0.15;
   animation: float 12s ease-in-out infinite;
 }
+
+.overview {
+  text-align: center;
+  padding: 3em 1em;
+  background: rgba(240, 240, 240, 0);
+  border-radius: 12px;
+  max-width: 80%;
+  margin: 2em auto;
+}
+
+.section-row {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  align-items: flex-start;
+  margin-top: 2em;
+}
+
+.section-card {
+  background: #212126;
+  border-radius: 8px;
+  padding: 1.5em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  width: 20%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+.section-card img {
+  width: 100%;
+  margin-bottom: -1em;
+}
+
+.section-card h3 {
+  color: #ffffff;
+  font-family: 'LXGW WenKai TC', serif;
+  font-size: 1.4em;
+  margin-bottom: 0.5em;
+}
+
+.section-card button {
+  background: #400B0B;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.section-card button:hover {
+  background: #732020;
+}
+
+.info-text {
+  display: none;
+  margin-top: 1em;
+  font-size: 0.95em;
+  color: #ffffff;
+  line-height: 1.4em;
+  transition: all 0.4s ease;
+}
+
+.info-text.show {
+  display: block;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
