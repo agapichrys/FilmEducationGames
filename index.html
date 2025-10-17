@@ -6,7 +6,7 @@
   <title>The Factory of the Moving Pictures</title>
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Oswald&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@600&family=LXGW+WenKai+TC&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -17,6 +17,8 @@
 	</h1>
     <p class="subtitle">Εξερευνήστε την τέχνη του κινηματογράφου μέσα από διαδραστικά παιχνίδια</p>
   </header>
+  
+	<div class="floating-elements"></div>
 
   <main>
     <!-- HISTORY -->
@@ -97,7 +99,7 @@
   </main>
 
   <footer>
-    <p>© 2025 The Factory of the Moving Pictures · An Interactive Film Education Project</p>
+    <p>© 2025 The Factory of Moving Pictures · An Interactive Film Education Project</p>
   </footer>
 
   <script>
@@ -131,6 +133,56 @@
     iframeZone.style.display = 'none';
   }
 </script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector(".floating-elements");
+  const images = [
+    "images/filmstrip.png",
+    "images/camera.png",
+    "images/clapperboard.png",
+    "images/megaphone.png",
+    "images/acting.png"
+  ];
+
+  const numElements = 40;
+  const cols = 8; // roughly 10 columns
+  const rows = Math.ceil(numElements / cols);
+
+	let seed = 1;
+	function random() {
+    seed = (seed * 16807) % 2147483647;
+    return (seed - 1) / 2147483646;
+	}
+
+  for (let i = 0; i < numElements; i++) {
+    const img = document.createElement("img");
+    img.src = images[Math.floor(random() * images.length)];
+    img.classList.add("float");
+
+    // calculate grid position
+    const col = i % cols;
+    const row = Math.floor(i / cols);
+
+    // base position based on grid
+    const baseX = (col + 0.5) * (100 / cols); // %
+    const baseY = (row + 0.5) * (100 / rows); // %
+
+    // slight random offset so it doesn’t look too rigid
+    const offsetX = (random() - 0.5) * 8; // ±8%
+    const offsetY = (random() - 0.5) * 8;
+
+    img.style.left = `calc(${baseX-2}% + ${offsetX}%)`;
+    img.style.top = `calc(${baseY}% + ${offsetY}%)`;
+    img.style.width = `${40 + random() * 40}px`;
+    img.style.animationDelay = `${random() * 8}s`;
+
+    container.appendChild(img);
+  }
+});
+</script>
+
 
 
 </body>
