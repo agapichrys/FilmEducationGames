@@ -7,10 +7,11 @@ body {
 }
 
 header {
-  text-align: center;
+  text-align: left;
   padding: 1em;
   margin-top: -2em;
-  background: #E3D9C8;
+  background: rgba(0,0,0,0);
+margin-bottom: -4em;
 }
 
 header, main, footer {
@@ -22,10 +23,6 @@ h1 {
   font-family: 'Geologica', sans-serif;
   font-size: 3.2em;
   color: #23393a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5em; /* space between logo and text */
 }
 
 h2 {
@@ -54,8 +51,8 @@ p {
 }
 
 h1 .logo {
-  height: 100px; /* adjust as needed */
-  width: auto;
+  width: 30%;
+  padding-left: 4em;
 }
 
 .subtitle {
@@ -71,7 +68,7 @@ h1 .logo {
   margin: 2em auto;
   /*border-top: 2px solid #23393a;
   border-bottom: 2px solid #23393a;*/
-  max-width: 80%;
+  max-width: 70%;
   border-radius: 0px;
   /*box-shadow: 0 0 20px rgba(150, 150, 140, 0.3);*/
 }
@@ -87,33 +84,37 @@ h1 .logo {
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  justify-content: left;
+  justify-content: center;
   gap: 3em;
+    background: #ffffff;
+	  border-radius: 20px;
+	  padding: 2em;
+box-shadow: 0 0 20px rgba(150, 150, 140, 0.4);
+
 }
 
 
 .game {
-	background: #212126 url('images/filmframe.png'); /* warm cream / sepia */
+	background: #ffffff; /*url('images/filmframe.png'); warm cream / sepia */
 	background-repeat: no-repeat;
   background-position: top center; /* always stick to top */
   background-size: 100% auto;      /* full width, maintain aspect ratio */
   overflow: hidden;                /* hides the cropped part */
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   padding: 1em;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   width: 25%;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .game:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(255, 200, 100, 0.3);
+  transform: scale(1.07);
+  box-shadow: 0 0 20px rgba(168, 162, 162, 0.5);
 }
 
 .game img {
-  width: 80% !important;
+  width: 90% !important;
   border-radius: 12px;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -122,12 +123,31 @@ h1 .logo {
 .game span {
   display: block;
   margin-top: 0.7em;
+  margin-bottom: 0.2em;
   font-weight: bold;
-  color: #ffffff;
+  color: #000000;
+    font-family: 'Geologica', serif;
+
   font-size: 1.2em;
 }
 
+.game-subtitle {
+  margin: 0em 0.4em 0.5em 0.4em; 
+  font-size: 1em;
+  color: #333;
+}
 
+
+.game button {
+  background: #FAC40C;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  font-size:1em;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
 
 .iframe-container {
   display: block;
@@ -160,30 +180,6 @@ h1 .logo {
   text-align: center;
 }
 
-.gallery a {
-  position: relative;
-  width: 200px;
-  text-decoration: none;
-  color: white;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.gallery a:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(255, 200, 100, 0.4);
-}
-
-.gallery img {
-  width: 100%;
-  border-radius: 10px;
-  border: 2px solid #f9d88f33;
-}
-
-.gallery span {
-  display: block;
-  margin-top: 0.5em;
-  font-weight: bold;
-}
 
 footer {
   text-align: center;
@@ -207,62 +203,59 @@ footer {
   animation: float 12s ease-in-out infinite;
 }
 
-.overview {
-  text-align: center;
-  padding: 3em 1em;
-  background: rgba(240, 240, 240, 0);
-  border-radius: 12px;
-  max-width: 80%;
-  margin: 2em auto;
-}
 
-.section-row {
+
+.section-header {
   display: flex;
+  background: #A324C7;
+  max-width: 100%;
+  border-radius: 20px;
+  align-items: center;
   justify-content: center;
-  gap: 2em;
-  align-items: flex-start;
-  margin-top: 2em;
+  gap: 3em;
+  margin-top: -2em;
+  margin-bottom: 2em;
+  text-align: left;
+  flex-wrap: wrap;
+  padding: 1.5em 0em 1.5em 0em;
 }
 
-.section-card {
-  background: #212126;
-  border-radius: 8px;
-  padding: 1.5em;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+.technical .section-header{
+	background: #AD0000;
+}
+
+.production .section-header{
+	background: #009463;
+}
+
+.distribution .section-header{
+	background: #155894;
+}
+
+.section-icon {
   width: 20%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: auto;
 }
 
-.section-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+.section-text {
+  max-width: 60%;
 }
 
-.section-card img {
-  width: 100%;
-  margin-bottom: -1em;
+.section-text h2 {
+  font-family: 'Geologica', serif;
+  font-size: 2em;
+  color: #FCE23F;
+  margin-top: 0.3em;
 }
 
-.section-card h3 {
+.section-text p {
+  font-family: 'Geologica', serif;
+  font-size: 1.2em;
   color: #ffffff;
-  font-family: 'LXGW WenKai TC', serif;
-  font-size: 1.4em;
-  margin-bottom: 0.5em;
+  line-height: 1.4em;
 }
 
-.section-card button {
-  background: #400B0B;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 0.5em 1em;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.section-card button:hover {
-  background: #732020;
-}
 
 .info-text {
   display: none;
