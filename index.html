@@ -149,35 +149,56 @@
   </footer>
 
   <script>
-  function openGame(gameUrl, clickedImg) {
-    // Close any previously open iframes
-    document.querySelectorAll('.iframe-zone').forEach(zone => zone.innerHTML = '');
-
-    // Find the parent section of the clicked image
-    const section = clickedImg.closest('section');
-    const iframeZone = section.querySelector('.iframe-zone');
-
-    // Create the iframe and close button
-    const container = document.createElement('div');
-    container.className = 'iframe-container';
-    container.innerHTML = `
-      <button class="close-btn" onclick="closeGame(this)">✖</button>
-      <iframe src="${gameUrl}" loading="lazy"></iframe>
-    `;
-
-    iframeZone.appendChild(container);
-    iframeZone.style.display = 'block';
-
-    // Smooth scroll to bring it into view
-    container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+function openGame(gameUrl, clickedImg) {
+  // If mobile, open in a new tab
+  if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+    window.open(gameUrl, '_blank');
+    return;
   }
+  
+  // Close any open games
+  document.querySelectorAll('.iframe-zone').forEach(zone => zone.innerHTML = '');
 
-  function closeGame(btn) {
-    const container = btn.parentElement;
-    const iframeZone = container.parentElement;
-    iframeZone.innerHTML = '';
-    iframeZone.style.display = 'none';
-  }
+  const section = clickedImg.closest('section');
+  const iframeZone = section.querySelector('.iframe-zone');
+
+  const container = document.createElement('div');
+  container.className = 'iframe-container';
+  container.innerHTML = `
+    <button class="close-btn" onclick="closeGame(this)">✖</button>
+    <iframe src="${gameUrl}" loading="lazy"></iframe>
+  `;
+
+  iframeZone.appendChild(container);
+  iframeZone.style.display = 'block';
+
+  scaleIframe(container);
+  window.addEventListener('resize', () => scaleIframe(container));
+
+  container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function closeGame(btn) {
+  const container = btn.parentElement;
+  const iframeZone = container.parentElement;
+  iframeZone.innerHTML = '';
+}
+
+function scaleIframe(container) {
+  const iframe = container.querySelector('iframe');
+  if (!iframe) return;
+
+  const baseWidth = 960;
+  const availableWidth = container.offsetWidth;
+
+  // scale relative to gallery/container width, not full viewport
+  const scale = Math.min(1, availableWidth / baseWidth);
+
+  iframe.style.transform = `scale(${scale})`;
+  iframe.style.width = `${baseWidth}px`;
+  iframe.style.height = `${650}px`;
+}
+
   
   function toggleInfo(id) {
   const el = document.getElementById(id);
